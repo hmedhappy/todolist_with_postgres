@@ -7,6 +7,7 @@ export const GetTodos = async () => {
 export const InsertTodo = async (description) => {
   await axios.post(`http://localhost:8000/todos`, {
     description,
+    date_creation: Date.now(),
   });
 };
 
@@ -15,9 +16,10 @@ export const UpdateTodo = async (id, description) => {
     description,
   });
 };
-export const FinishTodo = async (id, status) => {
+export const FinishTodo = async (id, status, date) => {
   await axios.put(`http://localhost:8000/todos/${id}`, {
     status,
+    date,
   });
 };
 

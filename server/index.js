@@ -32,16 +32,20 @@ app.get('/todos', async (req, res) => {
 
 app.put('/todos/:id', async (req, res) => {
   const { id } = req.params;
-  const { description, status } = req.body;
+  const { description, status, date } = req.body;
   description
     ? await pool.query(`UPDATE todo SET description = $1 WHERE todo_id = $2`, [
         description,
         id,
       ])
-    : await pool.query(`UPDATE todo SET status = $1 WHERE todo_id = $2`, [
+    : (await pool.query(`UPDATE todo SET status = $1 WHERE todo_id = $2`, [
         status,
         id,
-      ]);
+      ]),
+      await pool.query(
+        `UPDATE todo SET date_finished = $1 WHERE todo_id = $2`,
+        [date, id]
+      ));
 });
 
 app.delete('/todos/:id', async (req, res) => {

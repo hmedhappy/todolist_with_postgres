@@ -22,12 +22,13 @@ export default function Todos({
           <tr key={index}>
             <td>{todo.todo_id}</td>
             <td>{todo.description}</td>
-            <td> {Date.now()}</td>
+            <td> {todo.posting_date}</td>
             <td>
               {' '}
               <button
                 onClick={() => (
-                  FinishTodo(todo.todo_id, 'finished'), setrefresh(!refresh)
+                  FinishTodo(todo.todo_id, 'finished', new Date()),
+                  setrefresh(!refresh)
                 )}
                 className='btn btn-success'>
                 Terminer

@@ -17,10 +17,10 @@ export default function DoneList({ finished, refresh, setrefresh }) {
       <tbody>
         {finished?.map((todo, index) => (
           <tr key={index}>
-            <td>{todo.id}</td>
+            <td>{todo.todo_id}</td>
             <td>{todo.description}</td>
-            <td> {Date.now()}</td>
-            <td> {Date.now()}</td>
+            <td> {todo.posting_date}</td>
+            <td> {todo.date_finished}</td>
 
             <td>
               <button
